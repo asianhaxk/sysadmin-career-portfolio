@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysAdmin Career Portfolio</title>
+    <style>
+        :root {
+            --primary: #24364b;
+            --secondary: #172638;
+            --accent: #9a7b45;
+            --accent-hover: #806438;
+            --text-main: #344252;
+            --text-light: #647180;
+            --bg-light: #f5f5f2;
+            --card-bg: #ffffff;
+            --border: #d9dce0;
+            --accent-soft: #f2eee5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            scroll-margin-top: 5.5rem;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--primary);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 1px solid #aeb8c3;
+            border-radius: 0.375rem;
+            background: transparent;
+            color: #ffffff;
+            padding: 0.5rem 0.75rem;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .menu-toggle:focus-visible,
+        nav a:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid #d6bd8a;
+            outline-offset: 3px;
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 2rem 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0.5rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: #ffffff;
+            max-width: 100%;
+            padding: 7rem 2rem 3rem;
+        }
+
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        #home p {
+            font-size: 1.25rem;
+            color: #c1c9d1;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Pathway Section (Timeline Visual) */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--border);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: #ffffff;
+            border: 4px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .right::after { left: -8px; }
+
+        .content {
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .content h3 {
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .content .badge {
+            display: inline-block;
+            background-color: var(--accent-soft);
+            color: var(--accent);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .content h4 {
+            margin-top: 0.75rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .content ul {
+            margin-left: 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .section-intro {
+            max-width: 760px;
+            margin: -1.5rem auto 2.5rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        /* Cards Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .card p {
+            margin-bottom: 0.75rem;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h4 {
+            margin-top: 1rem;
+            color: var(--secondary);
+        }
+
+        .card ul {
+            margin-left: 1.25rem;
+        }
+
+        /* Role Comparison Layout */
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .role-box {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .role-box h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Split Section For Skills and Tools */
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .list-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .list-item h4 {
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .list-item p {
+            color: var(--text-light);
+        }
+
+        /* About Section */
+        .about-card {
+            background-color: var(--secondary);
+            color: #ffffff;
+            padding: 3rem;
+            border-radius: 0.75rem;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .about-card h3 {
+            color: #ffffff;
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .about-card .subtitle {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .about-goals {
+            margin-top: 1.5rem;
+            border-top: 1px solid #465568;
+            padding-top: 1.5rem;
+        }
+
+        .about-goals h4 {
+            color: #e0d8c8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: #c1c9d1;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+            border-top: 1px solid #24364b;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile View Optimization */
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+
+            .menu-toggle {
+                display: inline-block;
+            }
+
+            nav {
+                display: none;
+                flex-basis: 100%;
+            }
+
+            nav.is-open {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 0.25rem 0 0.5rem;
+            }
+
+            nav a {
+                display: block;
+                padding: 0.5rem 0;
+            }
+            
+            #home h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-container::after {
+                left: 23px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .split-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            section {
+                padding: 4rem 1.25rem 2rem;
+                scroll-margin-top: 4.5rem;
+            }
+
+            #home {
+                padding: 7rem 1.25rem 3rem;
+            }
+
+            .about-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">SysAdmin Portfolio</a>
+            <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false">
+                Menu
+            </button>
+            <nav id="site-navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#pathway">Pathway</a></li>
+                    <li><a href="#qualifications">Qualifications</a></li>
+                    <li><a href="#roles">Roles</a></li>
+                    <li><a href="#skills-tools">Skills & Tools</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Exploring the System Administrator Career Pathway</h1>
+        <p>A comprehensive visual guide mapping professional growth, essential functional tools, and modern infrastructure capabilities within the IT ecosystem.</p>
+        <a href="#pathway" class="btn">Explore the Pathway</a>
+    </section>
+
+    <!-- Career Pathway Section -->
+    <section id="pathway">
+        <h2 class="section-title">System Administrator Career Pathway</h2>
+        <p class="section-intro">A career in system administration can grow from supporting individual users to designing and leading reliable, secure infrastructure. The path below is one common route; experience and interests can shape the next step.</p>
+        <div class="timeline">
+            <article class="timeline-container left">
+                <div class="content">
+                    <span class="badge">Entry level</span>
+                    <h3>IT Support Technician</h3>
+                    <p>Provides first-line technical help and keeps users' computers and accounts working.</p>
+                    <h4>Main responsibilities</h4>
+                    <ul>
+                        <li>Diagnose hardware, software, and access issues.</li>
+                        <li>Set up workstations and document support requests.</li>
+                        <li>Escalate complex incidents to specialist teams.</li>
+                    </ul>
+                    <h4>Skills and experience</h4>
+                    <p>Customer service, clear communication, basic Windows or Linux use, and a methodical troubleshooting approach.</p>
+                </div>
+            </article>
+            <article class="timeline-container right">
+                <div class="content">
+                    <span class="badge">Early career</span>
+                    <h3>Junior System Administrator</h3>
+                    <p>Assists with routine administration of servers, user accounts, and organizational systems.</p>
+                    <h4>Main responsibilities</h4>
+                    <ul>
+                        <li>Create accounts and manage permissions under established procedures.</li>
+                        <li>Monitor backups, updates, and system health.</li>
+                        <li>Help maintain network and server documentation.</li>
+                    </ul>
+                    <h4>Skills and experience</h4>
+                    <p>Support experience, operating-system fundamentals, basic networking, and introductory PowerShell or shell scripting.</p>
+                </div>
+            </article>
+            <article class="timeline-container left">
+                <div class="content">
+                    <span class="badge">Intermediate</span>
+                    <h3>System Administrator</h3>
+                    <p>Owns day-to-day operation, availability, and security of an organization's systems.</p>
+                    <h4>Main responsibilities</h4>
+                    <ul>
+                        <li>Configure and maintain servers, identity services, and storage.</li>
+                        <li>Investigate incidents and improve reliability.</li>
+                        <li>Apply patches, access controls, and recovery procedures.</li>
+                    </ul>
+                    <h4>Skills and experience</h4>
+                    <p>Hands-on server administration, networking, security practices, scripting, and experience resolving production issues.</p>
+                </div>
+            </article>
+            <article class="timeline-container right">
+                <div class="content">
+                    <span class="badge">Advanced</span>
+                    <h3>Senior Systems Engineer</h3>
+                    <p>Designs and improves complex infrastructure and guides technical decisions across teams.</p>
+                    <h4>Main responsibilities</h4>
+                    <ul>
+                        <li>Architect scalable on-premises, cloud, or hybrid services.</li>
+                        <li>Automate operations and lead major technical incident response.</li>
+                        <li>Mentor administrators and establish infrastructure standards.</li>
+                    </ul>
+                    <h4>Skills and experience</h4>
+                    <p>Broad systems expertise, cloud and virtualization knowledge, automation, security design, and strong technical leadership.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="qualifications">
+        <h2 class="section-title">Skills and Qualifications</h2>
+        <p class="section-intro">Build a strong foundation across systems, networks, and safe operational practices. Formal education and certifications can help, while practical labs and experience demonstrate how you apply that knowledge.</p>
+        <div class="grid">
+            <article class="card">
+                <h3>Operating System Administration</h3>
+                <p>Learn user and permission management, services, storage, updates, and logs in Windows and Linux. These are the systems administrators maintain every day.</p>
+            </article>
+            <article class="card">
+                <h3>Networking Fundamentals</h3>
+                <p>Understand IP addressing, DNS, DHCP, routing, and common ports so you can identify where connectivity problems originate.</p>
+            </article>
+            <article class="card">
+                <h3>Troubleshooting</h3>
+                <p>Use a repeatable process to gather evidence, isolate causes, test fixes, and document outcomes instead of guessing.</p>
+            </article>
+            <article class="card">
+                <h3>Security Fundamentals</h3>
+                <p>Apply least privilege, patching, multi-factor authentication, and secure configuration to reduce risk and protect systems.</p>
+            </article>
+            <article class="card">
+                <h3>Scripting and Automation</h3>
+                <p>Use PowerShell or Bash to make routine tasks consistent, faster, and less prone to manual errors.</p>
+            </article>
+            <article class="card">
+                <h3>Backup and Recovery</h3>
+                <p>Know how to verify backups and practice restoration so that important services and data can recover after an outage.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="roles">
+        <h2 class="section-title">Job Roles and Responsibilities</h2>
+        <p class="section-intro">These roles work together to keep technology usable and dependable. Their focus shifts from individual user issues toward systems ownership and infrastructure design.</p>
+        <div class="comparison-container">
+            <article class="role-box">
+                <h3>Help Desk / IT Support Technician</h3>
+                <p>Focuses on user-facing support: responds to tickets, troubleshoots devices and applications, manages basic account requests, and escalates issues that need deeper access or expertise.</p>
+            </article>
+            <article class="role-box">
+                <h3>System Administrator</h3>
+                <p>Focuses on the health of shared services: maintains servers and accounts, applies updates, monitors backups, manages permissions, and resolves infrastructure incidents.</p>
+            </article>
+            <article class="role-box">
+                <h3>Systems Engineer / Infrastructure Manager</h3>
+                <p>Focuses on the bigger environment: engineers infrastructure changes, plans capacity and resilience, sets standards, coordinates projects, or leads the team responsible for operations.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="skills-tools">
+        <h2 class="section-title">Required Skills and Tools</h2>
+        <p class="section-intro">Successful administrators combine practical technical knowledge with careful communication, documentation, and a habit of learning.</p>
+        <div class="split-container">
+            <div>
+                <h3>Essential skills</h3>
+                <div class="list-item">
+                    <h4>Problem solving</h4>
+                    <p>Investigate symptoms systematically and verify that a fix resolves the root cause.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Communication and documentation</h4>
+                    <p>Explain technical issues clearly, keep useful records, and make changes easier for teammates to support.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Networking and systems fundamentals</h4>
+                    <p>Understand how devices, operating systems, and network services depend on one another.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Security awareness</h4>
+                    <p>Protect accounts and services through access control, updates, and secure operating practices.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Scripting and automation</h4>
+                    <p>Automate repeatable work and reduce inconsistent manual configuration.</p>
+                </div>
+            </div>
+            <div>
+                <h3>Useful tools and technologies</h3>
+                <div class="list-item">
+                    <h4>PowerShell</h4>
+                    <p>A command-line and scripting environment for managing Windows systems and automating administrative tasks.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Linux shell (Bash)</h4>
+                    <p>A command-line interface for inspecting, configuring, and automating Linux servers.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Virtualization platforms</h4>
+                    <p>Tools such as Hyper-V or VMware create and manage virtual machines for server workloads and safe practice labs.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Monitoring and ticketing systems</h4>
+                    <p>Monitoring platforms surface service and resource issues; ticketing systems track requests, incidents, and resolutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About the Developer</h2>
+        <div class="about-card">
+            <h3>John Eduard T Tomines</h3>
+            <p class="subtitle">Bachelor of Science in Information Technology</p>
+            <p>I am a student interested in how technology supports people and organizations. This portfolio presents a learning path into system administration and the skills needed to keep IT services reliable.</p>
+            <div class="about-goals">
+                <h4>My preferred IT career path</h4>
+                <p>[Add your preferred role or pathway, such as IT Support Technician to System Administrator.]</p>
+                <h4>My professional goals</h4>
+                <p>[Add your goals, such as building hands-on lab experience, earning a relevant certification, and growing into a systems engineering role.]</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>System Administrator Career Pathways | Career portfolio project</p>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector(".menu-toggle");
+        const navigation = document.querySelector("#site-navigation");
+
+        menuButton.addEventListener("click", () => {
+            const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+            menuButton.setAttribute("aria-expanded", String(!isExpanded));
+            navigation.classList.toggle("is-open", !isExpanded);
+        });
+
+        navigation.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                navigation.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+            }
+        });
+    </script>
+</body>
+</html>
